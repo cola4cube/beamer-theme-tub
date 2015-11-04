@@ -1,0 +1,140 @@
+% Copyright 2015 by Tony Ballhause
+%
+% This file may be distributed and/or modified under the
+% LaTeX Project Public License. The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+%
+% This work consists of the files beamerthemeTUBlayout.sty
+% beamerinnerthemeTUBlayout.sty and beamerouterthemeTUBlayout.sty
+
+\ProvidesPackage{beamerouterthemetublayout}[2015/11/04 TUB-Layout for beamer]
+
+\RequirePackage{tikz}
+\RequirePackage{textpos}
+\RequirePackage{calc}
+
+\mode<presentation>
+
+\setbeamercolor{section in head/foot}{fg=TUred,bg=white}
+\setbeamercolor{subsection in head/foot}{fg=TUred,bg=white}
+
+\setbeamercolor{author in head/foot}{parent=section in head/foot}
+\setbeamercolor{title in head/foot}{parent=subsection in head/foot}
+
+\defbeamertemplate*{title page}{customized}[1][]{} %create empty title page
+\newcommand{\pipe}{\hspace{2pt}\textbar\hspace{2pt}}
+
+%% Check for aspectratio and make titlepage
+%++++++++ aspect ratio 16:10 ++++++++%
+\ifdim\beamer@paperwidth=16.00cm\relax%
+  \ifdim\beamer@paperheight=10.00cm\relax%
+    \addtobeamertemplate{title page}{%
+      \begin{tikzpicture}[remember picture,overlay] % logo
+        \node [xshift=-28.35mm,yshift=-16.70mm] at (current page.north east)
+        {\includegraphics[width=37.79mm]{logos/TU_Logo_lang_RGB_red.pdf}};
+      \end{tikzpicture}%
+      \begin{tikzpicture}[remember picture,overlay] % grey line
+        \node [xshift=80mm,yshift=10.26mm] at (current page.south west)
+        {\tikz \fill [TUgrey] (0,0) rectangle (141mm,1pt);};
+      \end{tikzpicture}%
+      \begin{tikzpicture}[remember picture,overlay] % text block
+        \node[xshift=84.45mm,yshift=27.78mm,text width=150mm] at (current page.south west)
+        {\usebeamerfont{title}{\color{TUred}\inserttitle}\par
+        {\vspace{5mm}\scriptsize{\color{TUgrey}\insertauthor \\ \insertinstitute \pipe \insertdate}}
+        };
+      \end{tikzpicture}
+    }{}
+  \fi
+%++++++++ aspect ratio 16:9 ++++++++%
+  \ifdim\beamer@paperheight=9.00cm\relax%
+    \addtobeamertemplate{title page}{%
+      \begin{tikzpicture}[remember picture,overlay] % logo
+        \node [xshift=-28.35mm,yshift=-15.04mm] at (current page.north east)
+        {\includegraphics[width=37.79mm]{logos/TU_Logo_lang_RGB_red.pdf}};
+      \end{tikzpicture}%
+      \begin{tikzpicture}[remember picture,overlay] % grey line
+        \node [xshift=80mm,yshift=9.23mm] at (current page.south west)
+        {\tikz \fill [TUgrey] (0,0) rectangle (141mm,1pt);};
+      \end{tikzpicture}%
+      \begin{tikzpicture}[remember picture,overlay] % text block
+        \node[xshift=84.45mm,yshift=25mm,text width=150mm] at (current page.south west)
+        {\usebeamerfont{title}{\color{TUred}\begin{minipage}[b][7mm][b]{141mm}
+        {\inserttitle\par}\end{minipage}}\par
+        {\vspace{5mm}\scriptsize{\color{TUgrey}\insertauthor \\ \insertinstitute \\ \preslocation \pipe \insertdate}}
+        };
+      \end{tikzpicture}
+    }{}
+    %%% headline
+    \defbeamertemplate*{headline}{TUBlayout}
+    {%
+      \vspace{4mm}
+      \begin{beamercolorbox}[ignorebg,leftskip=6.45mm]{section in head/foot}
+        \insertnavigation{0.5\paperwidth}\vskip2pt
+        \begin{tikzpicture}[remember picture, overlay] % logo
+          \node [xshift=-21.42mm,yshift=-10.80mm] at (current page.north east)
+          {\includegraphics[width=23.94mm]{logos/TU_Logo_lang_RGB_red.pdf}};
+        \end{tikzpicture}%
+      \end{beamercolorbox}%
+    }
+    %%% footline
+    \defbeamertemplate*{footline}{TUBlayout}
+    {%
+      \begin{tikzpicture}[remember picture,overlay] % grey line
+        \node [xshift=80mm,yshift=9.23mm] at (current page.south west)
+        {\tikz \fill [TUgrey] (0,0) rectangle (141mm,1pt);};
+      \end{tikzpicture}%
+      \begin{tikzpicture}[remember picture,overlay] % text block
+        \node[xshift=80mm,yshift=6mm,text width=141mm] at (current page.south west)
+        {\scriptsize{\color{TUgrey}\insertshortauthor \pipe \insertshorttitle \pipe
+        \insertdate\hfill\insertframenumber\hspace{1pt}/\hspace{1pt}\inserttotalframenumber}
+        };
+      \end{tikzpicture}
+    }
+  \fi
+\fi
+%++++++++ aspect ratio 4:3 ++++++++%
+\ifdim\beamer@paperwidth=12.80cm\relax%
+  \addtobeamertemplate{title page}{%
+    \begin{tikzpicture}[remember picture,overlay] % logo
+      \node [xshift=-22.67mm,yshift=-16.03mm] at (current page.north east)
+      {\includegraphics[width=30.24mm]{logos/TU_Logo_lang_RGB_red.pdf}};
+    \end{tikzpicture}%
+    \begin{tikzpicture}[remember picture,overlay] % grey line
+      \node [xshift=63.99mm,yshift=9.85mm] at (current page.south west)
+      {\tikz \fill [TUgrey] (0,0) rectangle (112.88mm,1pt);};
+    \end{tikzpicture}%
+    \begin{tikzpicture}[remember picture,overlay] % text block
+      \node[xshift=82.55mm,yshift=25mm,text width=150mm] at (current page.south west)
+      {\usebeamerfont{title}{\color{TUred}\begin{minipage}[b][7mm][b]{112.88mm}
+      {\inserttitle\par}\end{minipage}}\par
+      {\vspace{5mm}\scriptsize{\color{TUgrey}\insertauthor \\ \insertinstitute \\ \preslocation \pipe \insertdate}}
+      };
+    \end{tikzpicture}
+  }{}
+  \defbeamertemplate*{headline}{TUBlayout} % headline
+    {%
+      \vspace{7mm}
+      \begin{beamercolorbox}[ignorebg,leftskip=6.45mm]{section in head/foot}
+        \insertnavigation{0.5\paperwidth}\vskip2pt
+        \begin{tikzpicture}[remember picture, overlay] % logo
+          \node [xshift=-17.13mm,yshift=-12.93mm] at (current page.north east)
+          {\includegraphics[width=19.2mm]{logos/TU_Logo_lang_RGB_red.pdf}};
+        \end{tikzpicture}%
+      \end{beamercolorbox}%
+    }
+    \defbeamertemplate*{footline}{TUBlayout} % footline
+    {%
+      \begin{tikzpicture}[remember picture,overlay] % grey line
+        \node [xshift=63.99mm,yshift=9.85mm] at (current page.south west)
+        {\tikz \fill [TUgrey] (0,0) rectangle (112.88mm,1pt);};
+      \end{tikzpicture}%
+      \begin{tikzpicture}[remember picture,overlay] % text block
+        \node[xshift=64mm,yshift=6mm,text width=112.88mm] at (current page.south west)
+        {\scriptsize{\color{TUgrey}\insertshortauthor \pipe \insertshorttitle \pipe
+        \insertdate\hfill\insertframenumber / \inserttotalframenumber}
+        };
+      \end{tikzpicture}
+    }
+\fi
+\mode
+<all>
