@@ -1,0 +1,50 @@
+\documentclass[aspectratio=169]{beamer}
+
+\mode<presentation>
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+\usefonttheme{professionalfonts}
+
+\setbeamertemplate{navigation symbols}{}
+\usetheme{TUBlayout}
+
+\title[Short title]{Long title of the presentation - this also supports multiple line titles}
+\author[Short author]{Long author 1\inst{1}, Long author 2\inst{2}}
+\institute{\inst{1}Institute 1 \inst{2}Institute 2}
+\newcommand{\preslocation}{Place where presentation is held}
+\date{\today}
+
+\makeindex
+
+\begin{document}
+  \frame[plain]{\titlepage}
+
+\section{section}
+\subsection{subsection}
+
+\begin{frame}
+  \frametitle{Frametitle}
+  This layout supports:
+  \begin{itemize}
+    \item Multiple line titles
+    \item Section bullets at the top of every frame
+    \item Coloured item bullets (TU red)
+    \end{itemize}
+  This minimal example also creates one backup frame, which will not appear in the section bullets and the counter of the frames is also not rising.
+\end{frame}
+
+\begin{frame}
+
+\end{frame}
+
+\appendix
+\newcounter{finalframe}
+\setcounter{finalframe}{\value{framenumber}}
+
+\begin{frame}[noframenumbering]
+
+\end{frame}
+
+\end{document}
