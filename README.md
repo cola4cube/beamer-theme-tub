@@ -6,7 +6,7 @@ This based upon the offical PowerPoint theme of the university. The layout and a
 ## Installation
 **Arch**
 
-Install [beamer-theme-tub](https://aur.archlinux.org/packages/beamer-theme-tub/) from the AUR (e.g. with yaourt)
+Install [beamer-theme-tub](https://aur.archlinux.org/packages/beamer-theme-tub-git/) from the AUR (e.g. with yaourt)
 
     yaourt -S beamer-theme-tub
     
